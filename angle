@@ -1,0 +1,14 @@
+#!/bin/bash
+# Sets angle on a servo at channel.  All channels if none specified.  All servos to midpoint if no arguments.
+
+# Config provides "midpoint" and "deg90"
+source .config.sh
+
+# Parameters
+angle=${1:-0} # Desired angle (degrees; 0 is midpoint)
+channel=$2    # Channel to affect
+
+pwm=$(( angle * deg90 / 90 )) # Integer truncation; we will tolerate.
+pwm=$(( pwm + midpoint ))
+
+./pwm $pwm $channel
