@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./set 0xfe 0x7a b # PRE_SCALE = 122 (50Hz)
+./set 0x01 0x04 b # MODE2: power-on default
+./set 0x00 0x20 b # MODE1: Oscillator on
+sleep 0.01
+./set 0x00 0xa0 b # MODE1: Restart

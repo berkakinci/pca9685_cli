@@ -1,0 +1,22 @@
+#!/bin/bash
+# Sets PWM value on a channel.  All channels if none specified.  All channels "full off" if no arguments.
+# Yes; it's off by one and no guardrails...
+
+# Constants
+all_led_on_channel=61 # Makes "channel" calcuation below point to all_led_on and all_led_off registers.
+pwm_full_off=0x1000   # Set the "Full Off" bit in the LEDx_OFF registers.
+reg_led0_on=0x06      # Base for LED0_ON registers
+reg_led0_off=0x08     # Base for LED0_OFF registers
+
+# Get parameters
+channel=${2:-$all_led_on_channel} # Defaults to affect all channels simultaneously
+pwm=${1:-$pwm_full_off} # Defaults to set all channels to "full off."
+
+# Compute addresses for this channel's ON/OFF timeslot registers.
+reg_led_on=$((  reg_led0_on  + (4 * channel) ))
+reg_led_off=$(( reg_led0_off + (4 * channel) ))
+
+# Actual writes...
+# Use 16-bit writes
+./set $reg_led_on  0x0  w # Pulse always starts on timeslot 0
+./set $reg_led_off $pwm w # Pulse ends on $pwm
