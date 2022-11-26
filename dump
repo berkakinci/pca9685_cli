@@ -1,0 +1,6 @@
+#!/bin/bash
+# Dumps used registers
+
+source .config.sh
+i2cdump -y -r 0x00-0x45 $I2C_BUS $I2C_ADDRESS b
+i2cdump -y -r 0xfa-0xff $I2C_BUS $I2C_ADDRESS b

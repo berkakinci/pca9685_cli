@@ -1,0 +1,22 @@
+# Usual backup/temporary files.
+*~
+~$*
+\#*#
+*.bak
+
+# Build Products
+*.o
+__pycache__
+*.pyc
+
+# CAD backups
+*.FCStd[1-9]
+*.blend[1-9]
+
+# OS Junk
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db

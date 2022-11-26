@@ -1,0 +1,6 @@
+#!/bin/bash
+# Get a value from PCA9685.
+# Caution: Using 8-bit (b) and 16-bit (w) accesses; specify as last argument or defaults to 8-bit.
+
+source .config.sh
+i2cget -y $I2C_BUS $I2C_ADDRESS "$@"
